@@ -1,0 +1,10 @@
+SELECT sum(saleAmt)/1 AS DealAmt,
+         dealHour AS TimeSlot ,
+         spuId AS SpuId
+FROM APP. ck_XXX
+WHERE (dateTime >= '2020-03-10'
+        AND dateTime <= '2020-03-10')
+        AND spuId IN ('33333') 
+        AND(validTenMin >= 0
+        AND validTenMin <= 143)  --10分钟1个点
+GROUP BY  TimeSlot ,SpuId
