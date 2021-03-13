@@ -1,2 +1,2 @@
 # python
-python代码相关
+各种代码相关
