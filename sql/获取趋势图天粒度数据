@@ -1,0 +1,25 @@
+SELECT
+	SUM(DealAmt) AS DealAmt,
+	TimeSlot,
+	SkuId
+FROM
+	(
+		SELECT
+			SUM(saleAmt) / 1 AS DealAmt,
+			DATETIME AS TimeSlot,
+			SkuId,
+		FROM
+			APP. CKXXX
+		WHERE
+			(
+				    DATETIME >= '2020-02-24'
+				AND DATETIME <= '2020-03-10'
+			)
+			AND skuId IN('XXXX') --卡条件
+		GROUP BY
+			TimeSlot,
+			SkuId settings distributed_group_by_no_merge = 1
+	)
+GROUP BY
+	TimeSlot,
+	SkuId
