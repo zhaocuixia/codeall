@@ -7,10 +7,7 @@ FROM
     FROM app.xxx
     WHERE (dateTime >= '2020-03-10'
             AND dateTime <= '2020-03-10')  --卡时间
-            AND secondTerminalId IN ('app')  --卡平台
-            AND spuId IN ('1670651','10020666182487','100004521157')
-            AND if(shopType='POP',dictGetString( 'GE.shop_dict' ,'dept0',tuple(shopId)) IN ('1726'),dictGet( 'GE.sku_dict' ,'dept0',toUInt64(skuId)) IN ('1726')) --卡部门
-            AND dealFlag='1'  --是否成交金额
+            AND spuId IN ('1111111','222222222','3333333333') --卡条件
     GROUP BY  SpuId settings distributed_group_by_no_merge = 1)
 GROUP BY  SpuId
 ORDER BY  DealAmt DESC limit 0,35
