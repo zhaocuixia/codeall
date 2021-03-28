@@ -1,0 +1,38 @@
+import sys
+import os
+# json替换当文本处理
+# 时间修改为对比维度
+with open('/Users/zhaocuixia/log-2021-03-22.txt','r') as f:
+
+    lines = f.readlines()
+    fo = open("/Users/zhaocuixia/log-2021-03-2240.txt",'w+')
+    for i in range(len(lines)):
+        print(lines[i])
+        # start = lines[i].find('cur_dimens_start_date":')+len('cur_dimens_start_date":')
+        # end = start + 12
+        # print(lines[i][start:end])
+        # lines[i]=lines[i][:start+1]+"2021-02-01"+lines[i][end-1:]
+        #
+        start = lines[i].find('cur_dimens_end_date":')+len('cur_dimens_end_date":')
+        end = start + 12
+        print(lines[i][start:end])
+        #lines[i]=lines[i][:start+1]+"2021-03-22"+lines[i][end-1:]  # 50天
+        lines[i]=lines[i][:start+1]+"2021-03-12"+lines[i][end-1:]  # 40天
+
+        # start = lines[i].find('cur_start_date":')+len('cur_start_date":')
+        # end = start + 12
+        # print(lines[i][start:end])
+        # lines[i]=lines[i][:start+1]+"2021-01-01"+lines[i][end-1:]
+        #
+        start = lines[i].find('cur_end_date":')+len('cur_end_date":')
+        end = start + 12
+        print(lines[i][start:end])
+        # lines[i]=lines[i][:start+1]+"2021-02-19"+lines[i][end-1:]  # 50天
+        lines[i]=lines[i][:start+1]+"2021-02-09"+lines[i][end-1:]  # 40天
+        print(lines[i])
+
+        fo.write(lines[i])
+    fo.close()
+    f.close()
+
+
