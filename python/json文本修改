@@ -1,6 +1,6 @@
 import sys
 import os
-# json替换当文本处理
+# json替换当文本处理，修改值长度固定
 # 时间修改为对比维度
 with open('/Users/zhaocuixia/log-2021-03-22.txt','r') as f:
 
