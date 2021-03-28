@@ -1,0 +1,23 @@
+# coding=UTF-8
+#
+#实现了将列加逗号转行
+
+import sys
+import os
+result = ""
+fr = open('/Users/zhaocuixia/list', 'r')
+temp = fr.readlines()
+for line in temp:
+    a = line.replace('\t', '')  # 去除\t
+    print(a)
+    a= a.replace('"', '')  # 去掉"的方法直接替换
+    print(a)
+    result = result+a.rstrip("\n")+','#去掉换行符，并进行连接（行转列）
+
+result = result[:-1]  # 去掉最后一个，
+print(result)
+#写入新的文件
+fw = open('/Users/zhaocuixia/anslist', 'w')
+fw.write(result)
+fw.close()
+fr.close()
