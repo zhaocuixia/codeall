@@ -1,0 +1,4 @@
+sed '/^$/d' nowcoder.txt
+grep -v ^$  nowcoder.txt 
+awk '!/^$/ {print $NF}' nowcoder.txt  这个感觉因为一行才可以的
+awk '!/^$/ {print $0}' nowcoder.txt  这个试了可以
