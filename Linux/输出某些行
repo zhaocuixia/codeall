@@ -1,0 +1,10 @@
+查看文件的前5行，可以使用head命令，如
+head -5 filename
+查看文件的后5行，可以使用tail命令，如：
+tail -5 filename 或 tail -n 5 filename
+查看文件中间一段，你可以使用sed命令，如：
+sed -n ‘5,20p’ filename
+只查看文件的第5行到第20行。
+sed -n '5p'  filename
+head -n 5  filename | tail -n 1
+输出第5行
