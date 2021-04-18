@@ -1,0 +1,10 @@
+1）wc命令的功能为统计指定文件中的字节数、字数、行数, 并将统计结果显示输出。
+该命令各选项含义如下：- c 统计字节数;- l 统计行数;- w 统计字数
+cat nowcoder.txt | wc -l
+2）sed -n 是打印输出常与p一起使用， -i 直接对文件的修改
+输出行号：=
+sed -n '$=' nowcoder.txt
+3）awk
+awk '{print NR}' nowcoder.txt|tail -n1  获取全部行号输出最后一行
+awk 'END{print NR}' nowcoder.txt
+grep -n "" nowcoder.txt|awk -F: '{print }'|tail -n1| awk -F: '{print $1}'  通过grep -n 加行号读取全文输出最后一行第一列
