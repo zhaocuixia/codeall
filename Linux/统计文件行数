@@ -4,6 +4,9 @@ cat nowcoder.txt | wc -l
 2）sed -n 是打印输出常与p一起使用， -i 直接对文件的修改
 输出行号：=
 sed -n '$=' nowcoder.txt
+ps:
+sed -n '1=' nowcoder.txt 第一行的行号
+sed -n '/aaa/=' nowcoder.txt匹配aaa行的行号
 3）awk
 awk '{print NR}' nowcoder.txt|tail -n1  获取全部行号输出最后一行
 awk 'END{print NR}' nowcoder.txt
