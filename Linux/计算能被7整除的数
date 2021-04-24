@@ -1,0 +1,18 @@
+for i in $(seq 0 50)
+    do
+    let  a=i%7;
+    # a=$((i%7))
+    # a=`expr $i % 7`
+    # a=$[i%7]
+    if [ "$a" -eq 0 ]
+        then
+       echo "$i"
+    fi
+    done
+#---------------------------------------------
+for i in {0..50}
+    do
+        if [[ i%7 -eq 0 ]];then # 必须是两个[]
+            echo $i
+        fi
+    done
