@@ -1,0 +1,8 @@
+# 统计所有进程占用内存大小
+# ps aux | grep -v 'RSS TTY' 
+# USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+
+cat nowcoder.txt | awk '{sum+=$6}END{print sum}' # 列相加,不加end每列处理完会进行输出
+awk 'BEGIN{count=0;}{count+=$6;}END{print count;}' nowcoder.txt
+# ps:行相加
+ awk '{for(i = 1; i < $NF ; i++){sum +=$i }} END{print sum}' test1
