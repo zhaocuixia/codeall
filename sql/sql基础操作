@@ -1,0 +1,67 @@
+1、创建表的例子
+CREATE TABLE actor
+  (actor_id smallint(5) NOT NULL PRIMARY KEY, 
+   first_name varchar(45) NOT NULL,
+   last_name varchar(45) NOT NULL,
+   last_update date NOT NULL);
+
+2、插入数据
+INSERT INTO actor(actor_id,
+                  first_name,
+                  last_name,
+                  last_update)
+VALUES(1,'PENELOPE','GUINESS','2006-02-15 12:34:33'),
+      (2,'NICK','WAHLBERG','2006-02-15 12:34:33');
+# mysql中常用的三种插入数据的语句: 
+# insert into表示插入数据，数据库会检查主键，如果出现重复会报错； 
+# replace into表示插入替换数据，需求表中有PrimaryKey，
+#             或者unique索引，如果数据库已经存在数据，则用新数据替换，如果没有数据效果则和insert into一样； 
+# insert ignore表示，如果中已经存在相同的记录，则忽略当前新数据；
+insert ignore into actor values("3","ED","CHASE","2006-02-15 12:34:33");
+
+3、导入数据
+CREATE TABLE actor_name
+(
+first_name varchar(45) NOT NULL,
+last_name varchar(45) NOT NULL
+);
+INSERT INTO actor_name SELECT first_name, last_name FROM actor;
+======================================
+create table actor_name
+select first_name,last_name from actor;
+
+4、增加删除主键、索引
+ALTER TABLE tbl_name ADD PRIMARY KEY (col_list);
+// 该语句添加一个主键，这意味着索引值必须是唯一的，且不能为NULL。
+ALTER TABLE tbl_name ADD UNIQUE index_name (col_list);
+// 这条语句创建索引的值必须是唯一的。
+ALTER TABLE tbl_name ADD INDEX index_name (col_list);
+// 添加普通索引，索引值可出现多次。
+DROP INDEX index_name ON tbl_name; 
+// 或者
+ALTER TABLE tbl_name DROP INDEX index_name；
+ALTER TABLE tbl_name DROP PRIMARY KEY;
+强制索引
+SELECT * FROM salaries FORCE INDEX(idx_emp_no) WHERE emp_no = 10005;
+新增列
+ALTER TABLE actor ADD (create_date datetime NOT NULL DEFAULT '2020-10-01 00:00:00');
+
+5、创建视图
+CREATE VIEW actor_name_view
+AS 
+SELECT first_name AS first_name_v, last_name AS last_name_v
+FROM actor;
+
+6.触发器
+构造一个触发器audit_log，在向employees_test表中插入一条数据的时候，触发插入相关的数据到audit中
+create trigger audit_log after insert on employees_test
+for each row
+begin
+insert into audit values(NEW.ID,NEW.NAME);
+end
+1)create trigger ：创建触发器
+2)触发器要说明是在after 还是before事务发生时触发
+3)要指明是insert 、delete、update操作
+4)on 表名
+5)begin和end之间写触发的动作
+6)new 关键字表示更新后的表的字段 ，old表示更新前的表的字段 
