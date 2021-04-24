@@ -1,0 +1,14 @@
+for i in `cat nowcoder.txt`
+do
+if [ `echo $i | wc -m` -lt 9 ]
+then
+echo $i
+fi
+done
+-------------------------------------------------------------
+cat nowcoder.txt | awk '{
+for (i=1;i<=NF;i++){
+        if (length($i) < 8)
+                print $i
+}
+}'
