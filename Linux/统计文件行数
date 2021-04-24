@@ -10,4 +10,4 @@ sed -n '/aaa/=' nowcoder.txt匹配aaa行的行号
 3）awk
 awk '{print NR}' nowcoder.txt|tail -n1  获取全部行号输出最后一行
 awk 'END{print NR}' nowcoder.txt
-grep -n "" nowcoder.txt|awk -F: '{print }'|tail -n1| awk -F: '{print $1}'  通过grep -n 加行号读取全文输出最后一行第一列
+4）grep -n "" nowcoder.txt|awk -F: '{print }'|tail -n1| awk -F: '{print $1}'  通过grep -n 加行号(以：分隔)读取全文输出最后一行第一列
