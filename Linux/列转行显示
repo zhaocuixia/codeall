@@ -1,0 +1,16 @@
+1、printf
+awk '{printf $1" "}' test  # 每行都需要这个写
+2、
+awk '{
+    for (i = 1; i <= NF; i++){
+        if (NR == 1) {
+            array[i] = $i
+        } else {
+            array[i] = array[i] $i
+        }
+    }
+} END {
+    for(j = 1; j <= NF; j++){
+        print array[j]
+    }
+}' nowcoder.txt
