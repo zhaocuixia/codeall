@@ -1,0 +1,9 @@
+1、将gor 形式的日志上传到云上
+2、将dockerfile和docker_start.sh 放到某个git上
+2、通过dockerfile 构造gor的镜像，执行时会run docker_start.sh 。gor 位于 /home/export/servers/gor run docker_start.sh 位于/home/admin
+docker_start.sh的作用
+1）使tag生效
+2）写start.sh 
+2）根据url下载gor日志到路径下 /export/servers/  ，执行gor ，发送请求
+3）写stop.sh 
+Stop.sh 停止gor
