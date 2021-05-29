@@ -223,5 +223,6 @@ if __name__ == '__main__':
     #filepath=os.getcwd() + os.sep +'log'+os.sep+'log-2020-05-09.txt'
     logFilter.log_filter_for_diff(filepath)
 
+    
 
 
