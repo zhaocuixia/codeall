@@ -1,0 +1,7 @@
+_ROOT_="roots"
+_ADMIN_="admins"
+#VOCAB_NAME=
+#DOMAIN=xxx.xxx.xxx.xxx 
+HOST="ge.app.xxx.xxx"
+BASE_QPS=5 #这里可以设置初始qps
+URL="s3cmdcreateurl"
