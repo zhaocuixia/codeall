@@ -1,0 +1,14 @@
+awk 
+'BEGIN{FS=""} 
+{arr[NR]=0;for(i=1;i<=NF;i++){if($i>=1 && $i<=5) ++arr[NR]}} 
+END{for(j=1;j<=NR;j++) {print "line"j" number: "arr[j];sum+=arr[j];} print "sum is "sum}' nowcoder.txt
+
+#============================================
+awk '{
+    num = gsub(/[1-5]/, "");
+    sum += num;
+    printf("line%d number: %d\n", NR, num);
+}
+END {
+    printf("sum is %d\n", sum);
+}'
