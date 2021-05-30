@@ -4,9 +4,9 @@ awk '{printf $1" "}' test  # 每行都需要这个写
 awk '{
     for (i = 1; i <= NF; i++){
         if (NR == 1) {
-            array[i] = $i
+            array[i] = $i  # 第一行时直接赋值 array[1]  = 第一列第一行的值
         } else {
-            array[i] = array[i] $i
+            array[i] = array[i] $i # 第x行时直接赋值 array[1]  = array[1] 连接 第一列第x行的值
         }
     }
 } END {
