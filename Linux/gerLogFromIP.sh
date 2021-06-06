@@ -1,3 +1,4 @@
+
 date=`date +%Y-%m-%d -d '1 days ago'`
 tmpfile=$$.fifo        #创建管道名称（就是个名字）  $$是进程号 
 mkfifo $tmpfile       #创建管道 
