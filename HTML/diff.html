@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>diff执行结果</title>
+	<style>h3{text-align:center;}</style>
+	<style type="text/css">
+	body,html {margin: 0;padding: 0;height: 100%;}
+	.left,.right {float: left;width: 50%;height: 20px;}
+	.left { background-color: white; }
+	.right { background-color: white; }
+</style>
+</head>
+<body>
+	<button   id="btn1" onclick="aaa('btn1',1)">>>>展开</button><br>
+	<div name="window" id="div1">
+		<div class="left" style="height: 400px; overflow:scroll"  id="div1con1"  onscroll="move(1,2,1)"><ol> <pre id="div1pre1"> {"a": "ThisIdYellowBegin123ThisIdYellowEnd", "c": "ThisIdYellowBegin[1, 2, 3, 4]ThisIdYellowEnd", "d": {"test": "ThisIdYellowBeginworkThisIdYellowEnd", "yf": "yl"}, "ThisIdPinkBeginThisIdPinkBeginbThisIdPinkEndThisIdPinkEnd": 345} </pre></ol></div>
+		<div class="left" style="height: 400px; overflow:scroll"  id="div1con2"  onscroll="move(1,1,2)"><ol> <pre id="div1pre2">{"a": "ThisIdYellowBegin345ThisIdYellowEnd", "c": "ThisIdYellowBegin[2, 3, 4]ThisIdYellowEnd", "d": {"test": "ThisIdYellowBeginworksThisIdYellowEnd", "yf": "yl", "ThisIdPinkBeginThisIdPinkBeginThisIdPinkBeginmoreThisIdPinkEndThisIdPinkEndThisIdPinkEnd": "keys"}, "ThisIdPinkBeginThisIdPinkBeginThisIdPinkBeginfThisIdPinkEndThisIdPinkEndThisIdPinkEnd": "tst", "ThisIdPinkBeginThisIdPinkBeginThisIdPinkBeginThisIdPinkBegineThisIdPinkEndThisIdPinkEndThisIdPinkEndThisIdPinkEnd": 123}</pre></ol></div>
+	</div>
+		<script type="text/javascript"> 
+			var onOff=false; var ip =[]; 
+			var ids = document.getElementsByName("window"); 
+			for(var i=0;i<ids.length;i++) { 
+				ids[i].style.display="none"; 
+			}
+			function move(a,b,c){ //上下左右滑动时同步
+			 document.getElementById("div"+a+"con"+b).scrollTop = document.getElementById("div"+a+"con"+c).scrollTop; 
+			 document.getElementById("div"+a+"con"+b).scrollLeft = document.getElementById("div"+a+"con"+c).scrollLeft; 
+			} 
+			function aaa(e,f) { 
+				var btn=document.getElementById(e); 
+				if(onOff==true) { 
+					document.getElementById("div"+f).style.display="none"; 
+					btn.innerHTML=">>>展开" 
+				} 
+				else { 
+					document.getElementById("div"+f).style.display="block"; 
+					btn.innerHTML ="<<<收缩"
+				} 
+				onOff=!onOff; 
+				if (ip[f] != f) { //对内容的处理
+					var obj1 = document.getElementById("div"+f+"pre1").innerText; 
+					var obj2 = document.getElementById("div"+f+"pre2").innerText; 
+					var str1 = JSON.stringify(JSON.parse(obj1), null, 4); 
+					var str2 = JSON.stringify(JSON.parse(obj2), null, 4); //第三个参数，用来控制结果字符串里面的间距
+					output(ShowColor(str1),f); 
+					output2(ShowColor(str2),f); 
+					ip[f]=f; 
+				} 
+				return false; 
+			} 
+			function output(inp,f) { 
+				document.getElementById("div"+f+"pre1").innerHTML= inp; 
+			} 
+			function output2(inp,f) { 
+				document.getElementById("div"+f+"pre2").innerHTML= inp; 
+			} 
+			function ShowColor(json){  //替换颜色
+				var a1 = "<span style=background:yellow;>"; 
+				var a2 = "<span style=background:pink;>"; 
+				var a3 = "</span>"; 
+				return json.replace(/ThisIdYellowBegin/g, a1).replace(/ThisIdYellowEnd/g, a3).replace(/ThisIdPinkBegin/g, a2).replace(/ThisIdPinkEnd/g, a3); 
+			} 
+	</script> 
+	</body>
+	</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
