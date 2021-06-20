@@ -1,0 +1,114 @@
+===================Diff脚本执行报告===================
+<br>online_version:4.1.1;yf_version:4.1.0
+<br>脚本执行完成，总计对比2条url。
+<br>其中：无权限0条，无差异0条，有差异1条，返回值异常0条，url错误0条。
+<br>具体如下：
+<br>
+<br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>diff执行结果</title>
+	<style>h3{text-align:center;}</style>
+	<style type="text/css">
+	body,html {margin: 0;padding: 0;height: 100%;}
+.left,.right {float: left;width: 50%;height: 20px;}
+.left { background-color: white; }
+.right { background-color: white; }
+</style>
+</head>
+<body>[1]-----------<button   id="btn1" onclick="aaa('btn1',1)">>>>展开</button>
+	<button   id="to_btn1" onclick="move_to_diff(1)">>>>跳转到第一处不同</button>
+	<br>http://www.test.com
+	<br>online_param: test
+	<br>
+	<div name="window" id="div1">
+		<div class="left" style="height: 100px; overflow:scroll"  id="div1con1"  onscroll="move(1,2,1)">
+			<ol> 
+				<pre id="div1pre1">{"a": "ThisIdYellowBegin123ThisIdYellowEnd", "c": "ThisIdYellowBegin[1, 2, 3, 4]ThisIdYellowEnd", "d": {"test": "ThisIdYellowBeginworkThisIdYellowEnd", "yf": "yl"}, "ThisIdPinkBeginThisIdPinkBeginbThisIdPinkEndThisIdPinkEnd": 345}
+				</pre>
+			</ol>
+		</div>
+		<div class="left" style="height: 100px; overflow:scroll"  id="div1con2"  onscroll="move(1,1,2)">
+			<ol> 
+				<pre id="div1pre2">{"a": "ThisIdYellowBegin345ThisIdYellowEnd", "c": "ThisIdYellowBegin[2, 3, 4]ThisIdYellowEnd", "d": {"test": "ThisIdYellowBeginworksThisIdYellowEnd", "yf": "yl", "ThisIdPinkBeginThisIdPinkBeginThisIdPinkBeginmoreThisIdPinkEndThisIdPinkEndThisIdPinkEnd": "keys"}, "ThisIdPinkBeginThisIdPinkBeginThisIdPinkBeginfThisIdPinkEndThisIdPinkEndThisIdPinkEnd": "tst", "ThisIdPinkBeginThisIdPinkBeginThisIdPinkBeginThisIdPinkBegineThisIdPinkEndThisIdPinkEndThisIdPinkEndThisIdPinkEnd": 123}
+				</pre>
+			</ol>
+		</div>
+	</div>
+	<script type="text/javascript"> 
+		var onOff=false; 
+		var ip =[]; 
+		var ids = document.getElementsByName("window"); 
+		for(var i=0;i<ids.length;i++) { 
+			ids[i].style.display="none"; 
+		}
+		function move(a,b,c){ 
+			document.getElementById("div"+a+"con"+b).scrollTop = document.getElementById("div"+a+"con"+c).scrollTop; 
+			document.getElementById("div"+a+"con"+b).scrollLeft = document.getElementById("div"+a+"con"+c).scrollLeft; 
+		} 
+		function aaa(e,f) { 
+			var btn=document.getElementById(e); 
+			if(onOff==true) { 
+				document.getElementById("div"+f).style.display="none"; 
+				btn.innerHTML=">>>展开" 
+			} else { 
+				document.getElementById("div"+f).style.display="block"; 
+				btn.innerHTML ="<<<收缩"} onOff=!onOff; 
+				if (ip[f] != f) { 
+					var obj1 = document.getElementById("div"+f+"pre1").innerText; 
+					var obj2 = document.getElementById("div"+f+"pre2").innerText; 
+					var str1 = JSON.stringify(JSON.parse(obj1), null, 4); 
+					var str2 = JSON.stringify(JSON.parse(obj2), null, 4); 
+					output(ShowColor(str1,f),f); 
+					output2(ShowColor(str2,f),f); 
+					ip[f]=f; 
+				} 
+				return false; 
+			} 
+		function output(inp,f) { 
+			document.getElementById("div"+f+"pre1").innerHTML= inp; } 
+			function output2(inp,f) { 
+				document.getElementById("div"+f+"pre2").innerHTML= inp; 
+			} 
+			function ShowColor(json,f){ 
+				var a1 = '<span id="span'+f+'"  name="span'+f+'" style=background:yellow;>'; 
+				var a2 ='<span id="span'+f+'"  name="span'+f+'" style=background:yellow;>'; 
+			var a3 = "</span>"; 
+		return json.replace(/ThisIdYellowBegin/g, a1).replace(/ThisIdYellowEnd/g, a3).replace(/ThisIdPinkBegin/g, a2).replace(/ThisIdPinkEnd/g, a3); 
+		}
+		function move_to_diff(f){ 
+			ele = document.getElementById("span"+f);
+			if (ele != null){
+				ele.scrollIntoView();
+				ele.id = "spana";
+			}else{
+				alert("跳转已到底了");
+			}
+		} 
+	</script> 
+</body> 
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
