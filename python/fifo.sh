@@ -23,7 +23,7 @@ SSH="$SSHPASS -p $PASSWD ssh -o StrictHostKeyChecking=no -o GSSAPIAuthentication
 for ip in ${IPLIST}   #实现了一个并行读写 fifo管道实现多进程读写 
 do
    read  # 每次读一行。每读一次就会减少一个空行，直到管道中没有回车符
-  mkdir -p logs/${ip}
+  (mkdir -p logs/${ip}
   $SSH admin@$ip "pwd" || true    #远程执行pwd
   $SSHPASS -p $PASSWD scp admin@${ip}:/export/Logs/ge/access/access.log  logs/${ip}/ || true   # 远程拉取日志
   echo >&4)& # &放后台执行 ， #任务在后台执行结束后，向文件描述符中写入一个空行。如果不在向描述符中写入空行，当后台放入THREAD_NUM个任务之后，由于描述符中没有可读取的空行，会导致read 停顿。
