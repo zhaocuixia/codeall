@@ -7,7 +7,7 @@ def add(x):
 
 
 @pytest.mark.flaky(reruns=3, reruns_delay=2)  # 失败重试，需安装pytest-rerunfailures
-def test_addnew(self):
+def test_addnew():
     print('3')
     assert add(2) == 5
 
