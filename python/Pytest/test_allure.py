@@ -21,8 +21,17 @@ def test_2():
     print("测试用例2")
 
 if __name__ =="__main__":
-    # 执行pytest单元测试，生成 Allure 报告需要的数据存在 /temp 目录
-    pytest.main(['--alluredir', './temp'])
+    # 清除之前temp的内容
+    if os.path.exists('./temp'):
+        os.chdir('./temp')
+        json = os.listdir()
+        for j in json:
+            os.remove(j)
+        os.chdir('..')
+    # 执行某个文件
+    pytest.main(['test_allure.py', '--alluredir', './temp'])
+    # 执行全部pytest单元测试，生成 Allure 报告需要的数据存在 /temp 目录
+    # pytest.main(['--alluredir', './temp'])
     # 直接写allure报错了呢
     # 执行命令 allure generate ./temp -o ./report --clean ，生成测试报告
     os.system('/Users/zhaocuixia/Downloads/allure-2.14.0/bin/allure generate ./temp -o ./report --clean')
